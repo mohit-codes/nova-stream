@@ -1,21 +1,28 @@
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
+import { AllEvents } from "./pages/AllEvents";
 import { Home } from "./pages/Home";
+import { VideoPage } from "./pages/VideoPage";
 
 function App() {
   return (
-    <div className="">
-      <nav className="fixed top-0 h-[6vh] px-5 w-full flex justify-between items-center">
+    <div className="min-h-screen m-0 p-0 bg-[#2d2d2d] text-white">
+      <nav className="z-10 fixed top-0 h-[6vh] px-5 w-full flex justify-between items-center bg-transparent text-white border-b border-slate-500">
         <div>
-          <h1 className="text-lg">Nova Stream</h1>
+          <p className="text-lg font-medium">Nova Stream</p>
         </div>
-        <p>All Events</p>
+        <Link to="/videos">All Events</Link>
         <p>Playlists</p>
         <p>History</p>
-        <input type="text" className="rounded-lg py-1 px-2 border" />
+        <input
+          type="text"
+          className="rounded-full py-1 px-2 border bg-transparent border-slate-500"
+        />
         <p>Login</p>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/videos" element={<AllEvents />} />
+        <Route path="/videos/:id" element={<VideoPage />} />
       </Routes>
     </div>
   );
