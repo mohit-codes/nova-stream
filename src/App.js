@@ -1,6 +1,8 @@
 import { Link, Route, Routes } from "react-router-dom";
 import { AllEvents } from "./pages/AllEvents";
 import { Home } from "./pages/Home";
+import { Login } from "./pages/Login";
+import { Signup } from "./pages/Signup";
 import { VideoPage } from "./pages/VideoPage";
 
 function App() {
@@ -17,12 +19,14 @@ function App() {
           type="text"
           className="rounded-full py-1 px-2 border bg-transparent border-slate-500"
         />
-        <p>Login</p>
+        <Link to="/login">Login</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/videos" element={<AllEvents />} />
         <Route path="/videos/:id" element={<VideoPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </div>
   );
