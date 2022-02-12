@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { PlayListModal } from "../components/PlaylistModal/PlayListModal";
 import { AllVideoListing } from "../containers/AllVideoListing";
+import { useAuth } from "../hooks/useAuth";
 import { useVideo } from "../hooks/useVideo";
 
 export const Home = () => {
   const { videoList } = useVideo();
+  const { fetchUserData } = useAuth();
   const [showModal, setShowModal] = useState(false);
   const openModal = () => setShowModal(true);
+
+  useEffect(() => {
+    (async () => await fetchUserData())();
+  }, []);
 
   return (
     <div className="bg-[#2d2d2d] text-white">
@@ -19,7 +26,7 @@ export const Home = () => {
         <div className="ml-8 pt-[25vh]">
           <h1 className="text-4xl font-bold my-4">{videoList[27]?.title}</h1>
           <div className="">
-            <Link to={`/videos/609c6a6bcf8a604d0a91948f`}>
+            <Link to={`/videos/62062f5de27764e2f739a29a`}>
               <button className="py-2 px-8 bg-slate-700 bg-opacity-75 mr-4 font-semibold rounded-md">
                 Play
               </button>
@@ -45,10 +52,7 @@ export const Home = () => {
       </header>
       <AllVideoListing />
       {showModal && (
-        <div className="absolute top-96 left-96 w-96 bg-black text-white">
-          Playlist
-          <p onClick={() => setShowModal(false)}>cross</p>
-        </div>
+        <PlayListModal setShowModal={setShowModal} id={videoList[27]?._id} />
       )}
     </div>
   );
