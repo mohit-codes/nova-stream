@@ -7,3 +7,5 @@ export const Loading = () => {
     </div>
   );
 };
+
+export const Spinner = () => <ImSpinner3 className="animate-spin text-5xl" />;
