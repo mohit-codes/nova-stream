@@ -1,21 +1,32 @@
 import { Route, Routes } from "react-router-dom";
-import { Home } from "./pages/Home";
+import { NavBar } from "./components/NavBar/NavBar";
+import PrivateRoute from "./components/PrivateRoute";
+import {
+  AllEvents,
+  History,
+  Home,
+  Login,
+  Playlists,
+  Signup,
+  VideoPage,
+} from "./pages";
 
 function App() {
   return (
-    <div className="">
-      <nav className="fixed top-0 h-[6vh] px-5 w-full flex justify-between items-center">
-        <div>
-          <h1 className="text-lg">Nova Stream</h1>
-        </div>
-        <p>All Events</p>
-        <p>Playlists</p>
-        <p>History</p>
-        <input type="text" className="rounded-lg py-1 px-2 border" />
-        <p>Login</p>
-      </nav>
+    <div className="min-h-screen m-0 p-0 bg-[#2d2d2d] text-white">
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/videos" element={<AllEvents />} />
+        <Route path="/videos/:id" element={<VideoPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/playlists" element={<PrivateRoute />}>
+          <Route path="/playlists" element={<Playlists />} />
+        </Route>
+        <Route path="/history" element={<PrivateRoute />}>
+          <Route path="/history" element={<History />} />
+        </Route>
       </Routes>
     </div>
   );
