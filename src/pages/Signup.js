@@ -9,9 +9,8 @@ export const Signup = () => {
     password: "",
     confirmPassword: "",
   });
-  const [loading, setLoading] = useState(false);
   const [signupError, setSignupError] = useState("");
-  const { emailValidate, signupWithUserCredentials } = useAuth(setLoading);
+  const { emailValidate, signupWithUserCredentials, loading } = useAuth();
 
   const isPasswordMatched =
     formState.confirmPassword !== "" &&
@@ -31,25 +30,20 @@ export const Signup = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     setSignupError("");
-    setLoading(true);
     if (checkUserInput) {
       if (!isPasswordValid) {
         setSignupError("INVALID_PASSWORD");
-        setLoading(false);
         return;
       }
       if (!isEmailValid) {
         setSignupError("INVALID_EMAIL");
-        setLoading(false);
         return;
       }
       const [success] = await signupWithUserCredentials(formState);
       !success && setSignupError("SIGNUP_ERROR");
-      setLoading(false);
       return;
     }
     setSignupError("EMPTY_FIELDS");
-    setLoading(false);
   };
 
   const showError = () => {
