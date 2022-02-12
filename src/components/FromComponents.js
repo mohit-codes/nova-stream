@@ -1,17 +1,26 @@
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useState } from "react";
 
-export const InputBox = ({ id, value, callback, type = "text" }) => {
+export const InputBox = ({
+  id,
+  value,
+  callback,
+  type = "text",
+  placeholder,
+  showLabel = true,
+}) => {
   return (
     <>
-      <label htmlFor={id} className="capitalize text-lg">
-        {id}
-      </label>
+      {showLabel && (
+        <label htmlFor={id} className="capitalize text-lg">
+          {id}
+        </label>
+      )}
       <input
         type={type}
         id={id}
         value={value}
-        placeholder={`Your ${id}`}
+        placeholder={placeholder || `Your ${id}`}
         onChange={callback}
         className="w-full rounded-md py-2 px-2 text-black my-2"
       />
