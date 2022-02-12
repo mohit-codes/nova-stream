@@ -1,9 +1,17 @@
 import { useState } from "react";
 import { BiPlayCircle } from "react-icons/bi";
 import YouTube from "react-youtube";
-
+import { userActions } from "../hooks/userActions";
 export const VideoSection = ({ video }) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const { addToHistory, isVideoAlreadyInHistory } = userActions();
+
+  const markAsViwed = async () => {
+    if (!isVideoAlreadyInHistory(video?._id)) {
+      await addToHistory(video?._id);
+    }
+    setIsVideoPlaying(true);
+  };
 
   return isVideoPlaying ? (
     <YouTube
@@ -21,7 +29,7 @@ export const VideoSection = ({ video }) => {
       style={{
         backgroundImage: `url("https://img.youtube.com/vi/${video?.videoId}/maxresdefault.jpg")`,
       }}
-      onClick={() => setIsVideoPlaying(true)}
+      onClick={() => markAsViwed()}
     >
       <button aria-label="play video">
         <BiPlayCircle className="play-icon" />
