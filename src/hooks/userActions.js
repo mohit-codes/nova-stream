@@ -15,7 +15,7 @@ export const userActions = () => {
   const navigate = useNavigate();
 
   const fetchPlaylists = async () => {
-    if (user._id) {
+    if (user?._id) {
       setLoading(true);
       const { data } = await axios.get(`${BASE_URL}/playlist`);
       setLoading(false);
@@ -25,7 +25,7 @@ export const userActions = () => {
   };
 
   const fetchHistory = async () => {
-    if (user._id) {
+    if (user?._id) {
       setLoading(true);
       const { data } = await axios.get(`${BASE_URL}/user/history`);
       setLoading(false);
@@ -35,7 +35,7 @@ export const userActions = () => {
   };
 
   const fetchLikedVideos = async () => {
-    if (user._id) {
+    if (user?._id) {
       setLoading(true);
       const { data } = await axios.get(`${BASE_URL}/user/liked`);
       setLoading(false);
@@ -56,7 +56,7 @@ export const userActions = () => {
     });
 
   const addToLikedVideos = async (id) => {
-    if (user._id && !isVideoAlreadyLiked(id)) {
+    if (user?._id && !isVideoAlreadyLiked(id)) {
       setLoading(true);
       const { data } = await axios.post(`${BASE_URL}/user/liked/add/${id}`);
       if (data.success) {
@@ -72,7 +72,7 @@ export const userActions = () => {
   };
 
   const removeFromLikedVideos = async (id) => {
-    if (user._id && isVideoAlreadyLiked(id)) {
+    if (user?._id && isVideoAlreadyLiked(id)) {
       setLoading(true);
       const { data } = await axios.put(`${BASE_URL}/user/liked/remove/${id}`);
       if (data.success) {
@@ -88,7 +88,7 @@ export const userActions = () => {
   };
 
   const addToHistory = async (id) => {
-    if (user._id && !isVideoAlreadyInHistory(id)) {
+    if (user?._id && !isVideoAlreadyInHistory(id)) {
       setLoading(true);
       const { data } = await axios.post(`${BASE_URL}/user/history/add/${id}`);
       if (data.success) {
@@ -104,7 +104,7 @@ export const userActions = () => {
   };
 
   const resetHistory = async () => {
-    if (user._id) {
+    if (user?._id) {
       setLoading(true);
       const { data } = await axios.delete(`${BASE_URL}/user/history/delete`);
       if (data.success) {
@@ -119,7 +119,7 @@ export const userActions = () => {
   };
 
   const addToPlaylist = async (playlist, videoId) => {
-    if (user._id) {
+    if (user?._id) {
       if (!isVideoAlreadyInPlaylist(playlist.name, videoId)) {
         setLoading(true);
         const { data } = await axios.post(
@@ -139,7 +139,7 @@ export const userActions = () => {
     }
   };
   const removeFromPlaylist = async (playlist, videoId) => {
-    if (user._id) {
+    if (user?._id) {
       if (isVideoAlreadyInPlaylist(playlist.name, videoId)) {
         setLoading(true);
         const { data } = await axios.post(
@@ -160,7 +160,7 @@ export const userActions = () => {
   };
 
   const createPlaylist = async (name, id) => {
-    if (user._id) {
+    if (user?._id) {
       setLoading(true);
       const { data } = await axios.post(`${BASE_URL}/playlist/new`, { name });
       if (data.success) {
@@ -179,7 +179,7 @@ export const userActions = () => {
   };
 
   const deletePlaylist = async (id) => {
-    if (user._id) {
+    if (user?._id) {
       setLoading(true);
       const { data } = await axios.delete(`${BASE_URL}/playlist/delete/${id}`);
       if (data.success) {
