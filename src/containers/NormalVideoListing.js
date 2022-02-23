@@ -12,7 +12,7 @@ export const NormalVideoListing = ({
   const { loading } = useVideo();
 
   return (
-    <div className="border-b border-gray-400 py-4">
+    <div className="border-b border-gray-500 py-4">
       {!dontShowTitle &&
         (showTitle ? (
           <p className="font-semibold text-2xl ml-4">{`From ${videos[0]?.owner}`}</p>
