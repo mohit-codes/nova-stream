@@ -9,6 +9,7 @@ import {
   Playlists,
   Signup,
   VideoPage,
+  Search,
 } from "./pages";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/videos/:id" element={<VideoPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/playlists" element={<PrivateRoute />}>
           <Route path="/playlists" element={<Playlists />} />
         </Route>

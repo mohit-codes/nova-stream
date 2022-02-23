@@ -5,3 +5,4 @@ export { Signup } from "./Signup";
 export { VideoPage } from "./VideoPage";
 export { History } from "./History";
 export { Playlists } from "./Playlists";
+export { Search } from "./Search";
