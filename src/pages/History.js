@@ -15,6 +15,7 @@ export const History = () => {
   }, []);
 
   const resetHandler = async () => {
+    setHistory([]);
     await resetHistory();
   };
 

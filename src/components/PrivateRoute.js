@@ -12,7 +12,7 @@ const PrivateRoute = () => {
     </div>
   ) : (
     <>
-      {user._id ? (
+      {user?._id ? (
         <Outlet />
       ) : (
         <Navigate to="/login" state={{ from: location.pathname }} replace />

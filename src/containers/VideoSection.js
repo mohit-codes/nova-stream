@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BiPlayCircle } from "react-icons/bi";
-import YouTube from "react-youtube";
 import { userActions } from "../hooks/userActions";
+
 export const VideoSection = ({ video }) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const { addToHistory, isVideoAlreadyInHistory } = userActions();
@@ -14,15 +14,11 @@ export const VideoSection = ({ video }) => {
   };
 
   return isVideoPlaying ? (
-    <YouTube
-      id={video?.videoId}
-      opts={{
-        playerVars: {
-          autoplay: 1,
-        },
-      }}
+    <iframe
       className="w-full h-[75vh]"
-    />
+      title="Video"
+      src={`https://www.youtube.com/embed/${video?.videoId}`}
+    ></iframe>
   ) : (
     <div
       className="w-full h-[75vh] opacity-100 hover:opacity-60 bg-cover relative"

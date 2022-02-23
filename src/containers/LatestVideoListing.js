@@ -8,7 +8,7 @@ export const LatestVideoListing = () => {
   const latestVideos = videoList.filter((video) => video.isLatest);
 
   return (
-    <div className="border-b border-gray-400">
+    <div className="border-b border-gray-500">
       <p className="font-semibold text-2xl ml-4">Latest on Nova Stream</p>
       <ScrollContainer className="flex justify-start ">
         {loading ? (

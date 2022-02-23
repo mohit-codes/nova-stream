@@ -30,13 +30,17 @@ export const Playlists = () => {
           {!noPlaylist &&
             playlists.map((playlist) => {
               return (
-                <div key={playlist._id}>
-                  <p className="font-semibold text-2xl ml-4">{playlist.name}</p>
-                  <NormalVideoListing
-                    videos={playlist.videos}
-                    dontShowTitle={true}
-                  />
-                </div>
+                playlist.videos.length > 0 && (
+                  <div key={playlist._id}>
+                    <p className="font-semibold text-2xl ml-4">
+                      {playlist.name}
+                    </p>
+                    <NormalVideoListing
+                      videos={playlist.videos}
+                      dontShowTitle={true}
+                    />
+                  </div>
+                )
               );
             })}
           {!likedVideoCount && (
